@@ -32,5 +32,6 @@ jobs:
         script: |
           docker pull ${{ secrets.DOCKER_USERNAME }}/spree:${{ github.sha }}
           cd /opt/spree
+          export COMMIT_SHA=${{ github.sha }}
           docker compose -f docker-compose.prod.yml down
           docker compose -f docker-compose.prod.yml up -d
