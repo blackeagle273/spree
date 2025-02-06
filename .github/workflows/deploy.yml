@@ -19,8 +19,9 @@ jobs:
 
     - name: Build and Push Docker Image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/spree:${{ github.sha }} .
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/spree:${{ github.sha }} -t ${{ secrets.DOCKER_USERNAME }}/spree:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/spree:${{ github.sha }}
+        docker push ${{ secrets.DOCKER_USERNAME }}/spree:latest
 
     - name: Deploy to VPS
       uses: appleboy/ssh-action@master
